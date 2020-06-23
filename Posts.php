@@ -4,28 +4,52 @@
 
 <?php
 if (isset($_POST["Submit"])) {
-  $Titulo = $_POST["Titulo"];
-  $Post = $_POST["Descricao"];
+  $Title = $_POST["Title"];
+  $Post = $_POST["Description"];
 
-  if (empty($Titulo & $Post)) {
+  $Author = "abc";
+
+  $Image = $_FILES["Image"]["name"];
+  $Target = "Uploads/" . basename($_FILES["Image"]["name"]);
+  date_default_timezone_set("America/Sao_Paulo");
+  $CurrentTime = time();
+  $DateTime = strftime("%d/%b/%Y", $CurrentTime);
+
+  if (empty($Title & $Post)) {
     $_SESSION["MenssagemDeErro"] = "Preencha todos os campos corretamente.";
     Redirect("Posts.php");
   };
 
-  if (strlen($Titulo & $Post) < 10) {
+  if (strlen($Title & $Post) < 10) {
     $_SESSION["MenssagemDeErro"] = "Campo muito curto, mínimo de 10 caracteres.";
     Redirect("Posts.php");
   }
 
-  if (strlen($Titulo & $Post) > 49) {
+  if (strlen($Title & $Post) > 49) {
     $_SESSION["MenssagemDeErro"] = "Campo muito longo, máximo de 50 caracteres.";
     Redirect("Posts.php");
-  }
+  } else {
+    $sql = "INSERT INTO posts(title, description, author, img_url, created_at)";
+    $sql .= "VALUES(:titulo, :descricao, :autor, :imagem, :data)";
+    $stmt = $ConectarDB->prepare($sql);
+    $stmt->bindValue(":titulo", $Title);
+    $stmt->bindValue(":descricao", $Post);
+    $stmt->bindValue(":imagem", $Image);
+    $stmt->bindValue(":autor", $Author);
+    $stmt->bindValue(":data", $Date);
 
-  // else {
-  //   $sql = "INSERT INTO posts(title, description, img_url, author, created_at)"
-  // }
-}
+    $Executar = $stmt->execute();
+    move_uploaded_file($_FILES["Image"]["tmp_name"], $Target);
+
+    if ($Executar) {
+      $_SESSION["Sucesso"] = "Sucesso";
+      Redirect("Posts.php");
+    } else {
+      $_SESSION["MenssagemDeErro"] = "Erro";
+    }
+  }
+};
+
 ?>
 
 <!DOCTYPE html>
@@ -56,16 +80,23 @@ if (isset($_POST["Submit"])) {
     echo MenssagemDeErro();
     echo Sucesso();
     ?>
-    <form action="Posts.php" method="post">
-      <div class="form-group">
-        <label for="Titulo">Título: </label><br>
-        <input class="form control" id="Titulo" name="Titulo" type="text">
-      </div>
-      <div class="form-group">
-        <label for="Description">Descrição: </label><br>
-        <textarea id="Descricao" name="Descricao" class="form-control" aria-label="With textarea"></textarea> </div>
-      <button name="Submit" type="Submit" class="btn btn-sm btn-primary">Enviar</button>
-      <button type="button" class="btn btn-sm btn-primary">Voltar</button>
+    <div class="form-group row">
+      <form action="Posts.php" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="Title">Título: </label><br>
+          <input class="form control" id="Title" name="Title" type="text">
+        </div>
+        <div class="form-group">
+          <label for="Description">Descrição: </label><br>
+          <textarea id="Description" name="Description" class="form-control" aria-label="With textarea"></textarea>
+        </div>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" name="Image" id="Image">
+          <label class="custom-file-label" for="Image">Arquivo</label>
+        </div><br>
+        <button name="Submit" type="Submit" class="mt-2 btn btn-sm btn-primary">Enviar</button>
+        <button type="button" class="mt-2 btn btn-sm btn-primary">Voltar</button>
+    </div>
     </form>
   </section>
 

@@ -4,22 +4,27 @@
 
 <?php
 if (isset($_POST["Submit"])) {
-  $Categoria = $_POST["Titulo"];
+  $Titulo = $_POST["Titulo"];
+  $Post = $_POST["Descricao"];
 
-  if (empty($Categoria)) {
+  if (empty($Titulo & $Post)) {
     $_SESSION["MenssagemDeErro"] = "Preencha todos os campos corretamente.";
-    Redirect("Categorias.php");
+    Redirect("Posts.php");
   };
 
-  if (strlen($Categoria) < 10) {
+  if (strlen($Titulo & $Post) < 10) {
     $_SESSION["MenssagemDeErro"] = "Campo muito curto, mínimo de 10 caracteres.";
-    Redirect("Categorias.php");
+    Redirect("Posts.php");
   }
 
-  if (strlen($Categoria) > 49) {
+  if (strlen($Titulo & $Post) > 49) {
     $_SESSION["MenssagemDeErro"] = "Campo muito longo, máximo de 50 caracteres.";
-    Redirect("Categorias.php");
+    Redirect("Posts.php");
   }
+
+  // else {
+  //   $sql = "INSERT INTO posts(title, description, img_url, author, created_at)"
+  // }
 }
 ?>
 
@@ -33,7 +38,7 @@ if (isset($_POST["Submit"])) {
 </head>
 
 <body>
-  
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">JR</a>
     <ul class="navbar-nav mr-auto">
@@ -51,11 +56,14 @@ if (isset($_POST["Submit"])) {
     echo MenssagemDeErro();
     echo Sucesso();
     ?>
-    <form action="Categorias.php" method="post">
+    <form action="Posts.php" method="post">
       <div class="form-group">
-        <label for="Titulo">Título: </label>
+        <label for="Titulo">Título: </label><br>
         <input class="form control" id="Titulo" name="Titulo" type="text">
       </div>
+      <div class="form-group">
+        <label for="Description">Descrição: </label><br>
+        <textarea id="Descricao" name="Descricao" class="form-control" aria-label="With textarea"></textarea> </div>
       <button name="Submit" type="Submit" class="btn btn-sm btn-primary">Enviar</button>
       <button type="button" class="btn btn-sm btn-primary">Voltar</button>
     </form>

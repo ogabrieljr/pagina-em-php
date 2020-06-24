@@ -33,7 +33,6 @@ if (isset($_POST["Submit"])) {
   if (strlen($Post) >= 1000) {
     $_SESSION["MenssagemDeErro"] = "Campo muito longo, máximo de 1000 caracteres.";
     Redirect("AddNewPosts.php");
-
   } else {
     $sql = "INSERT INTO posts(title, description, author, img_url, created_at)";
     $sql .= "VALUES(:titulo, :descricao, :autor, :imagem, :data)";

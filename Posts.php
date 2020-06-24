@@ -23,7 +23,10 @@
         <a class="nav-link" href="#">Link</a>
       </li>
     </ul>
-  </nav>
+    <form class="form-inline my-2 my-lg-0 input-group-sm ">
+      <input class="form-control mr-sm-2" type="search" placeholder="Digite aqui" aria-label="Pesquisar">
+      <button class="btn btn-light my-2 my-sm-0 btn-sm" type="submit">Pesquisar</button>
+    </form>  </nav>
 
   <div class="container my-3">
     <div class="row">

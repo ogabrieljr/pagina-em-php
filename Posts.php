@@ -87,8 +87,9 @@
                 <td><?php echo $Date; ?></td>
                 <td><?php echo $Author; ?></td>
                 <td>
-                  <button type="button" class="btn btn-link btn-sm">Edit</button>
-                  <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                  <!-- <button type="button" class="btn btn-link btn-sm">Edit</button>
+                  <button type="button" class="btn btn-danger btn-sm">Delete</button> -->
+                  <button type="button" class="btn btn-success btn-sm">Artigo completo</button>
                 </td>
               </tr>
             </tbody>

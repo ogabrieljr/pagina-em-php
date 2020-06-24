@@ -48,7 +48,7 @@ if (isset($_POST["Submit"])) {
 
     if ($Executar) {
       $_SESSION["Sucesso"] = "Sucesso";
-      Redirect("Posts.php");
+      Redirect("AddNewPosts.php");
     } else {
       $_SESSION["MenssagemDeErro"] = "Erro";
     }

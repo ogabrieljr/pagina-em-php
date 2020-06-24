@@ -69,14 +69,14 @@ if (isset($_POST["Submit"])) {
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">JR</a>
+    <a class="navbar-brand" href="Posts.php">JR</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Posts.php">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
-      </li>
+      </li> -->
     </ul>
   </nav>
 

@@ -14,11 +14,11 @@ if (isset($_POST["Submit"])) {
   } else {
     global $ConectarDB;
     $sql = "INSERT INTO users(name, email, password)";
-    $sql .= "VALUES(:usuario, :Email, :Senha)";
+    $sql .= "VALUES(:name, :email, sha2(:password, 224))";
     $stmt = $ConectarDB->prepare($sql);
-    $stmt->bindValue(":usuario", $Name);
-    $stmt->bindValue(":Email", $Email);
-    $stmt->bindValue(":Senha", $Password);
+    $stmt->bindValue(":name", $Name);
+    $stmt->bindValue(":email", $Email);
+    $stmt->bindValue(":password", $Password);
 
     $Executar = $stmt->execute();
 

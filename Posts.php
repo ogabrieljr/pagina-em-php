@@ -24,9 +24,10 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 input-group-sm ">
-      <input class="form-control mr-sm-2" type="search" placeholder="Digite aqui" aria-label="Pesquisar">
+      <input class="form-control mr-sm-2" type="search" name="search" placeholder="Digite aqui" aria-label="Pesquisar">
       <button class="btn btn-light my-2 my-sm-0 btn-sm" type="submit">Pesquisar</button>
-    </form>  </nav>
+    </form>
+  </nav>
 
   <div class="container my-3">
     <div class="row">
@@ -54,10 +55,18 @@
             </tr>
           </thead>
           <?php
-          $Inc = 0;
           global $ConectarDB;
-          $sql = "SELECT * FROM posts";
-          $stmt = $ConectarDB->query($sql);
+          $Inc = 0;
+          if (isset($_GET["search"])) {
+            $Search = $_GET["search"];
+            $sql = "SELECT * FROM posts WHERE title LIKE :search";
+            $stmt = $ConectarDB->prepare(($sql));
+            $stmt->bindValue(":search", "%" . $Search . "%");
+            $stmt->execute();
+          } else {
+            $sql = "SELECT * FROM posts ORDER BY created_at desc";
+            $stmt = $ConectarDB->query($sql);
+          }
           while ($Dados = $stmt->fetch()) {
             $Title = $Dados["title"];
             $Description = $Dados["description"];

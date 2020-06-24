@@ -1,3 +1,37 @@
+<?php require_once("Includes/DB.php") ?>
+<?php require_once("Includes/Functions.php") ?>
+<?php require_once("Includes/Sessions.php") ?>
+
+<?php
+if (isset($_POST["Submit"])) {
+  $Name = $_POST["Name"];
+  $Email = $_POST["Email"];
+  $Password = $_POST["Password"];
+
+  if (empty($Name & $Email & $Password)) {
+    $_SESSION["MenssagemDeErro"] = "Preencha todos os campos corretamente.";
+    Redirect("Login.php");
+  } else {
+    global $ConectarDB;
+    $sql = "INSERT INTO users(name, email, password)";
+    $sql .= "VALUES(:usuario, :Email, :Senha)";
+    $stmt = $ConectarDB->prepare($sql);
+    $stmt->bindValue(":usuario", $Name);
+    $stmt->bindValue(":Email", $Email);
+    $stmt->bindValue(":Senha", $Password);
+
+    $Executar = $stmt->execute();
+
+    if ($Executar) {
+      $_SESSION["Sucesso"] = "Sucesso";
+      Redirect("Login.php");
+    } else {
+      $_SESSION["MenssagemDeErro"] = "Erro";
+    }
+  }
+};
+?>
+
 <!DOCTYPE html>
 
 <head>
@@ -22,23 +56,27 @@
   </nav>
 
   <section class="container py-4">
+    <?php
+    echo MenssagemDeErro();
+    echo Sucesso();
+    ?>
     <div class="row">
       <div class="col-4">
-        <form>
+        <form action="Login.php" method="post">
           <div class="form-group input-group-sm">
-            <label for="username">Username</label>
-            <input type="username" class="form-control" id="username">
+            <label for="Name">Username</label>
+            <input type="Name" name="Name" class="form-control" id="Name">
           </div>
           <div class="form-group input-group-sm">
-            <label for="email">E-mail</label>
-            <input type="email" class="form-control" id="email">
+            <label for="Email">E-mail</label>
+            <input type="Email" name="Email" class="form-control" id="Email">
           </div>
           <div class="form-group input-group-sm">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password">
-            <small id="passwordHelp" class="form-text text-muted"> <a class="text-dark" href="#">Esqueceu sua senha?</a> </small>
+            <label for="Password">Password</label>
+            <input type="Password" name="Password" class="form-control" id="Password">
+            <small id="passwordHelp" class="form-text text-muted"><a class="text-dark" href="#">Esqueceu sua senha?</a></small>
           </div>
-          <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+          <button name="Submit" type="Submit" class="mt-2 btn btn-sm btn-primary">Enviar</button>
         </form>
       </div>
     </div>

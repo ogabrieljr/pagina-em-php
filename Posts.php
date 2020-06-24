@@ -41,14 +41,17 @@
         <table class="table table-striped table-hover">
           <thead class="thead-dark">
             <tr>
+              <th>#</th>
               <th>Título</th>
               <th>Comentário</th>
               <th>Imagem</th>
               <th>Data</th>
               <th>Autor</th>
+              <th></th>
             </tr>
           </thead>
           <?php
+          $Inc = 0;
           global $ConectarDB;
           $sql = "SELECT * FROM posts";
           $stmt = $ConectarDB->query($sql);
@@ -58,14 +61,20 @@
             $Image = $Dados["img_url"];
             $Date = $Dados["created_at"];
             $Author = $Dados["author"];
+            $Inc++
           ?>
-            <tbody class="">
+            <tbody>
               <tr>
+                <td><?php echo $Inc; ?></td>
                 <td><?php echo $Title; ?></td>
                 <td><?php echo $Description; ?></td>
-                <td><?php echo $Image; ?></td>
+                <td><img src="Uploads/<?php echo $Image; ?>" width="100px" alt=""></td>
                 <td><?php echo $Date; ?></td>
                 <td><?php echo $Author; ?></td>
+                <td>
+                <button type="button" class="btn btn-link btn-sm">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                </td>
               </tr>
             </tbody>
           <?php } ?>

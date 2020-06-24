@@ -43,7 +43,7 @@
             <tr>
               <th>#</th>
               <th>Título</th>
-              <th>Comentário</th>
+              <th>Post</th>
               <th>Imagem</th>
               <th>Data</th>
               <th>Autor</th>
@@ -67,13 +67,16 @@
               <tr>
                 <td><?php echo $Inc; ?></td>
                 <td><?php echo $Title; ?></td>
-                <td><?php echo $Description; ?></td>
+                <td><?php
+                    if (strlen($Description) > 40) $Description = substr($Description, 0, 30) . "...";
+                    echo $Description;
+                    ?></td>
                 <td><img src="Uploads/<?php echo $Image; ?>" width="100px" alt=""></td>
                 <td><?php echo $Date; ?></td>
                 <td><?php echo $Author; ?></td>
                 <td>
-                <button type="button" class="btn btn-link btn-sm">Edit</button>
-                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                  <button type="button" class="btn btn-link btn-sm">Edit</button>
+                  <button type="button" class="btn btn-danger btn-sm">Delete</button>
                 </td>
               </tr>
             </tbody>

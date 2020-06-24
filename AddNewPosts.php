@@ -25,9 +25,15 @@ if (isset($_POST["Submit"])) {
     Redirect("AddNewPosts.php");
   }
 
-  if (strlen($Title & $Post) > 49) {
+  if (strlen($Title) >= 50) {
     $_SESSION["MenssagemDeErro"] = "Campo muito longo, máximo de 50 caracteres.";
     Redirect("AddNewPosts.php");
+  }
+
+  if (strlen($Post) >= 1000) {
+    $_SESSION["MenssagemDeErro"] = "Campo muito longo, máximo de 1000 caracteres.";
+    Redirect("AddNewPosts.php");
+
   } else {
     $sql = "INSERT INTO posts(title, description, author, img_url, created_at)";
     $sql .= "VALUES(:titulo, :descricao, :autor, :imagem, :data)";

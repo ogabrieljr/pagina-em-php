@@ -2,56 +2,6 @@
 <?php require_once("Includes/Functions.php") ?>
 <?php require_once("Includes/Sessions.php") ?>
 
-<?php
-if (isset($_POST["Submit"])) {
-  $Title = $_POST["Title"];
-  $Post = $_POST["Description"];
-
-  $Author = "abc";
-
-  $Image = $_FILES["Image"]["name"];
-  $Target = "Uploads/" . basename($_FILES["Image"]["name"]);
-  date_default_timezone_set("America/Sao_Paulo");
-  $CurrentTime = time();
-  $DateTime = strftime("%d/%b/%Y", $CurrentTime);
-
-  if (empty($Title & $Post)) {
-    $_SESSION["MenssagemDeErro"] = "Preencha todos os campos corretamente.";
-    Redirect("Posts.php");
-  };
-
-  if (strlen($Title & $Post) < 10) {
-    $_SESSION["MenssagemDeErro"] = "Campo muito curto, mínimo de 10 caracteres.";
-    Redirect("Posts.php");
-  }
-
-  if (strlen($Title & $Post) > 49) {
-    $_SESSION["MenssagemDeErro"] = "Campo muito longo, máximo de 50 caracteres.";
-    Redirect("Posts.php");
-  } else {
-    $sql = "INSERT INTO posts(title, description, author, img_url, created_at)";
-    $sql .= "VALUES(:titulo, :descricao, :autor, :imagem, :data)";
-    $stmt = $ConectarDB->prepare($sql);
-    $stmt->bindValue(":titulo", $Title);
-    $stmt->bindValue(":descricao", $Post);
-    $stmt->bindValue(":imagem", $Image);
-    $stmt->bindValue(":autor", $Author);
-    $stmt->bindValue(":data", $Date);
-
-    $Executar = $stmt->execute();
-    move_uploaded_file($_FILES["Image"]["tmp_name"], $Target);
-
-    if ($Executar) {
-      $_SESSION["Sucesso"] = "Sucesso";
-      Redirect("Posts.php");
-    } else {
-      $_SESSION["MenssagemDeErro"] = "Erro";
-    }
-  }
-};
-
-?>
-
 <!DOCTYPE html>
 
 <head>
@@ -75,29 +25,54 @@ if (isset($_POST["Submit"])) {
     </ul>
   </nav>
 
-  <section class="container py-2 mb-4">
-    <?php
-    echo MenssagemDeErro();
-    echo Sucesso();
-    ?>
-    <div class="form-group row">
-      <form action="Posts.php" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="Title">Título: </label><br>
-          <input class="form control" id="Title" name="Title" type="text">
-        </div>
-        <div class="form-group">
-          <label for="Description">Descrição: </label><br>
-          <textarea id="Description" name="Description" class="form-control" aria-label="With textarea"></textarea>
-        </div>
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" name="Image" id="Image">
-          <label class="custom-file-label" for="Image">Arquivo</label>
-        </div><br>
-        <button name="Submit" type="Submit" class="mt-2 btn btn-sm btn-primary">Enviar</button>
-        <button type="button" class="mt-2 btn btn-sm btn-primary">Voltar</button>
+  <div class="container my-3">
+    <div class="row">
+      <div class="col-md-3">
+        <a href="AddNewPosts.php" class="btn btn-primary btn-block">
+          Add New Post
+        </a>
+      </div>
     </div>
-    </form>
+  </div>
+
+  <section class="container py-2 mb-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <table class="table table-striped table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th>Título</th>
+              <th>Comentário</th>
+              <th>Imagem</th>
+              <th>Data</th>
+              <th>Autor</th>
+            </tr>
+          </thead>
+          <?php
+          global $ConectarDB;
+          $sql = "SELECT * FROM posts";
+          $stmt = $ConectarDB->query($sql);
+          while ($Dados = $stmt->fetch()) {
+            $Title = $Dados["title"];
+            $Description = $Dados["description"];
+            $Image = $Dados["img_url"];
+            $Date = $Dados["created_at"];
+            $Author = $Dados["author"];
+          ?>
+            <tbody class="">
+              <tr>
+                <td><?php echo $Title; ?></td>
+                <td><?php echo $Description; ?></td>
+                <td><?php echo $Image; ?></td>
+                <td><?php echo $Date; ?></td>
+                <td><?php echo $Author; ?></td>
+              </tr>
+            </tbody>
+          <?php } ?>
+        </table>
+      </div>
+    </div>
+
   </section>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

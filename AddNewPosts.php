@@ -7,7 +7,7 @@ if (isset($_POST["Submit"])) {
   $Title = $_POST["Title"];
   $Post = $_POST["Description"];
 
-  $Author = "abc";
+  $Author =  $_SESSION["Username"];
 
   $Image = $_FILES["Image"]["name"];
   $Target = "Uploads/" . basename($_FILES["Image"]["name"]);
@@ -74,9 +74,21 @@ if (isset($_POST["Submit"])) {
       <li class="nav-item active">
         <a class="nav-link" href="Posts.php">Home<span class="sr-only">(current)</span></a>
       </li>
-      <!-- <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
-      </li> -->
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+
+    <form class="form-inline my-2 my-lg-0 input-group-sm ">
+      <a href="Register.php" class="btn btn-primary mx-3 btn-sm text-white" type="submit">Cadastro</a>
+      <a href="Login.php" class="btn btn-link mx-1 btn-sm text-white" type="submit">Login</a>
+    </form>
     </ul>
   </nav>
 

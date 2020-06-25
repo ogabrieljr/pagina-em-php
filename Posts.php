@@ -31,8 +31,7 @@
     </ul>
 
     <form class="form-inline my-2 my-lg-0 input-group-sm ">
-      <a href="Register.php" class="btn btn-primary mx-3 btn-sm text-white" type="submit">Cadastro</a>
-      <a href="Login.php" class="btn btn-link mx-1 btn-sm text-white" type="submit">Login</a>
+      <a href="Logout.php" class="btn btn-danger mx-3 btn-sm" type="submit">Log out</a>
     </form>
 
     <form class="form-inline my-2 my-lg-0 input-group-sm ">

@@ -3,26 +3,11 @@
 <?php require_once("Includes/Sessions.php") ?>
 
 <?php
-if (isset($_POST["Submit"])) {
-  $Name = $_POST["Name"];
-  $Password = $_POST["Password"];
+if (isset($_SESSION["Username"])) {
+  Redirect("Posts.php");
+}
 
-  if (empty($Name || $Password)) {
-    $_SESSION["MensagemDeErro"] = "Preencha todos os campos corretamente.";
-    Redirect("Login.php");
-  } else {
-    $ContaEncontrada = TentativaDeLogin($Name, $Password);
-
-    if ($ContaEncontrada) {
-      $_SESSION["Username"] = $ContaEncontrada["name"];
-      // $_SESSION["Sucesso"] = "Bem-vindo " .  $_SESSION["Username"];
-      Redirect("Posts.php");
-    } else {
-      $_SESSION["MensagemDeErro"] = "Senha incorreta.";
-      Redirect("Login.php");
-    }
-  }
-};
+Login();
 ?>
 
 <!DOCTYPE html>

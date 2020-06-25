@@ -33,6 +33,8 @@ if (isset($_POST["Submit"])) {
 
     $Executar = $stmt->execute();
 
+    Login();
+
     if ($Executar) {
       Redirect("Posts.php");
     } else {

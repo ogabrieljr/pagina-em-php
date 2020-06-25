@@ -91,7 +91,8 @@
               <tr>
                 <td><a class="text-dark" href="PostCompleto.php?id=<?php echo $PostID ?>"><?php echo $Inc; ?></a></td>
                 <td><a class="text-dark" href="PostCompleto.php?id=<?php echo $PostID ?>"><?php echo $Title; ?></td>
-                <td><a class="text-dark" href="PostCompleto.php?id=<?php echo $PostID ?>"><?php
+                <td><a class="text-dark" href="PostCompleto.php?id=<?php echo $PostID ?>">
+                    <?php
                     if (strlen($Description) > 40) $Description = substr($Description, 0, 30) . "...";
                     echo $Description;
                     ?></a></td>

@@ -93,6 +93,7 @@ if (isset($_POST["Submit"])) {
             <input type="Password" name="ConfirmPassword" class="form-control" id="ConfirmPassword"> </div>
           <button name="Submit" type="Submit" class="mt-2 btn btn-sm btn-primary">Enviar</button>
         </form>
+        <small class="text-muted">Já tem uma conta? <a class="text-dark" href="Login.php">Faça login</a></small>
       </div>
     </div>
   </section>

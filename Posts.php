@@ -1,6 +1,7 @@
 <?php require_once("Includes/DB.php") ?>
 <?php require_once("Includes/Functions.php") ?>
 <?php require_once("Includes/Sessions.php") ?>
+<?php ConfirmacaoDeLogin(); ?>
 
 <!DOCTYPE html>
 
@@ -29,16 +30,13 @@
         <a class="nav-link" href="#">Link</a>
       </li>
     </ul>
-
     <form class="form-inline my-2 my-lg-0 input-group-sm ">
       <a href="Logout.php" class="btn btn-danger mx-3 btn-sm" type="submit">Log out</a>
     </form>
-
     <form class="form-inline my-2 my-lg-0 input-group-sm ">
       <input class="form-control mr-sm-2" type="search" name="search" placeholder="Digite aqui" aria-label="Pesquisar">
       <button class="btn btn-light my-2 my-sm-0 btn-sm" type="submit">Pesquisar</button>
     </form>
-
   </nav>
 
   <div class="container my-3">
@@ -109,7 +107,6 @@
         </table>
       </div>
     </div>
-
   </section>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

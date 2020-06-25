@@ -8,17 +8,17 @@ if (isset($_POST["Submit"])) {
   $Password = $_POST["Password"];
 
   if (empty($Name || $Password)) {
-    $_SESSION["MenssagemDeErro"] = "Preencha todos os campos corretamente.";
+    $_SESSION["MensagemDeErro"] = "Preencha todos os campos corretamente.";
     Redirect("Login.php");
   } else {
     $ContaEncontrada = TentativaDeLogin($Name, $Password);
 
     if ($ContaEncontrada) {
       $_SESSION["Username"] = $ContaEncontrada["name"];
-      $_SESSION["Sucesso"] = "Bem-vindo " .  $_SESSION["Username"];
-      Redirect("Login.php");
+      // $_SESSION["Sucesso"] = "Bem-vindo " .  $_SESSION["Username"];
+      Redirect("Posts.php");
     } else {
-      $_SESSION["MenssagemDeErro"] = "Senha incorreta.";
+      $_SESSION["MensagemDeErro"] = "Senha incorreta.";
       Redirect("Login.php");
     }
   }
@@ -52,7 +52,6 @@ if (isset($_POST["Submit"])) {
         <a class="nav-link" href="#">Link</a>
       </li>
     </ul>
-
     <form class="form-inline my-2 my-lg-0 input-group-sm ">
       <a href="Register.php" class="btn btn-primary mx-3 btn-sm text-white" type="submit">Cadastro</a>
     </form>
@@ -61,7 +60,7 @@ if (isset($_POST["Submit"])) {
 
   <section class="container py-4">
     <?php
-    echo MenssagemDeErro();
+    echo MensagemDeErro();
     echo Sucesso();
     ?>
     <div class="row">

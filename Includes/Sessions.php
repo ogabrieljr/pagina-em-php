@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-function MenssagemDeErro()
+function MensagemDeErro()
 {
-  if (isset($_SESSION["MenssagemDeErro"])) {
+  if (isset($_SESSION["MensagemDeErro"])) {
     $msg = "<div>";
-    $msg .= htmlentities($_SESSION["MenssagemDeErro"]);
+    $msg .= htmlentities($_SESSION["MensagemDeErro"]);
     $msg .= "</div>";
-    $_SESSION["MenssagemDeErro"] = null;
+    $_SESSION["MensagemDeErro"] = null;
     return $msg;
   }
 }

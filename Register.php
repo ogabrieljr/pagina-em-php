@@ -10,17 +10,17 @@ if (isset($_POST["Submit"])) {
   $ConfirmPassword = $_POST["ConfirmPassword"];
 
   if (empty($Name & $Email & $Password)) {
-    $_SESSION["MenssagemDeErro"] = "Preencha todos os campos corretamente.";
+    $_SESSION["MensagemDeErro"] = "Preencha todos os campos corretamente.";
     Redirect("Register.php");
   }
 
   if (strlen($Password) < 5) {
-    $_SESSION["MenssagemDeErro"] = "Sua senha deve conter no mínimo 4 caracteres.";
+    $_SESSION["MensagemDeErro"] = "Sua senha deve conter no mínimo 4 caracteres.";
     Redirect("Register.php");
   }
 
   if ($Password !== $ConfirmPassword) {
-    $_SESSION["MenssagemDeErro"] = "Senhas diferentes.";
+    $_SESSION["MensagemDeErro"] = "Senhas diferentes.";
     Redirect("Register.php");
   } else {
     $ConectarDB;
@@ -36,7 +36,7 @@ if (isset($_POST["Submit"])) {
     if ($Executar) {
       Redirect("Posts.php");
     } else {
-      $_SESSION["MenssagemDeErro"] = "Erro";
+      $_SESSION["MensagemDeErro"] = "Erro";
       Redirect("Register.php");
     }
   }
@@ -68,7 +68,7 @@ if (isset($_POST["Submit"])) {
 
   <section class="container py-4">
     <?php
-    echo MenssagemDeErro();
+    echo MensagemDeErro();
     echo Sucesso();
     ?>
     <div class="row">

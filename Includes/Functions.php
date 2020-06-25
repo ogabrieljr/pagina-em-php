@@ -23,3 +23,13 @@ function TentativaDeLogin($Name, $Password)
     return;
   }
 }
+
+function ConfirmacaoDeLogin()
+{
+  if (isset($_SESSION["Username"])) {
+    return;
+  } else {
+    $_SESSION["MensagemDeErro"] = "Faça login antes de continuar.";
+    Redirect("Login.php");
+  }
+}

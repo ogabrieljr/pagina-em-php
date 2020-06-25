@@ -1,37 +1,37 @@
 <?php require_once("Includes/DB.php") ?>
 <?php require_once("Includes/Functions.php") ?>
 <?php require_once("Includes/Sessions.php") ?>
+<?php ConfirmacaoDeLogin(); ?>
 
 <?php
 if (isset($_POST["Submit"])) {
   $Title = $_POST["Title"];
   $Post = $_POST["Description"];
-
   $Author =  $_SESSION["Username"];
-
   $Image = $_FILES["Image"]["name"];
   $Target = "Uploads/" . basename($_FILES["Image"]["name"]);
+
   date_default_timezone_set("America/Sao_Paulo");
   $CurrentTime = time();
   $DateTime = strftime("%d/%b/%Y", $CurrentTime);
 
   if (empty($Title & $Post)) {
-    $_SESSION["MenssagemDeErro"] = "Preencha todos os campos corretamente.";
+    $_SESSION["MensagemDeErro"] = "Preencha todos os campos corretamente.";
     Redirect("AddNewPosts.php");
   };
 
   if (strlen($Title & $Post) < 10) {
-    $_SESSION["MenssagemDeErro"] = "Campo muito curto, mínimo de 10 caracteres.";
+    $_SESSION["MensagemDeErro"] = "Campo muito curto, mínimo de 10 caracteres.";
     Redirect("AddNewPosts.php");
   }
 
   if (strlen($Title) >= 50) {
-    $_SESSION["MenssagemDeErro"] = "Campo muito longo, máximo de 50 caracteres.";
+    $_SESSION["MensagemDeErro"] = "Campo muito longo, máximo de 50 caracteres.";
     Redirect("AddNewPosts.php");
   }
 
   if (strlen($Post) >= 1000) {
-    $_SESSION["MenssagemDeErro"] = "Campo muito longo, máximo de 1000 caracteres.";
+    $_SESSION["MensagemDeErro"] = "Campo muito longo, máximo de 1000 caracteres.";
     Redirect("AddNewPosts.php");
   } else {
     $sql = "INSERT INTO posts(title, description, author, img_url, created_at)";
@@ -50,7 +50,7 @@ if (isset($_POST["Submit"])) {
       $_SESSION["Sucesso"] = "Sucesso";
       Redirect("AddNewPosts.php");
     } else {
-      $_SESSION["MenssagemDeErro"] = "Erro";
+      $_SESSION["MensagemDeErro"] = "Erro";
     }
   }
 };
@@ -84,17 +84,15 @@ if (isset($_POST["Submit"])) {
         <a class="nav-link" href="#">Link</a>
       </li>
     </ul>
-
     <form class="form-inline my-2 my-lg-0 input-group-sm ">
-      <a href="Register.php" class="btn btn-primary mx-3 btn-sm text-white" type="submit">Cadastro</a>
-      <a href="Login.php" class="btn btn-link mx-1 btn-sm text-white" type="submit">Login</a>
+      <a href="Logout.php" class="btn btn-danger mx-3 btn-sm" type="submit">Log out</a>
     </form>
     </ul>
   </nav>
 
   <section class="container py-2 mb-4">
     <?php
-    echo MenssagemDeErro();
+    echo MensagemDeErro();
     echo Sucesso();
     ?>
     <div class="form-group row">

@@ -79,6 +79,7 @@
             $stmt = $ConectarDB->query($sql);
           }
           while ($Dados = $stmt->fetch()) {
+            $PostID = $Dados["ID"];
             $Title = $Dados["title"];
             $Description = $Dados["description"];
             $Image = $Dados["img_url"];
@@ -100,7 +101,7 @@
                 <td>
                   <!-- <button type="button" class="btn btn-link btn-sm">Edit</button>
                   <button type="button" class="btn btn-danger btn-sm">Delete</button> -->
-                  <button type="button" class="btn btn-success btn-sm">Artigo completo</button>
+                  <a href="PostCompleto.php?id=<?php echo $PostID ?>" type="button" class="btn btn-success btn-sm text-white">Artigo completo</a>
                 </td>
               </tr>
             </tbody>

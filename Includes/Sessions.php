@@ -4,7 +4,7 @@ session_start();
 function MensagemDeErro()
 {
   if (isset($_SESSION["MensagemDeErro"])) {
-    $msg = "<div>";
+    $msg = "<div class=\"alert alert-danger\">";
     $msg .= htmlentities($_SESSION["MensagemDeErro"]);
     $msg .= "</div>";
     $_SESSION["MensagemDeErro"] = null;
@@ -15,7 +15,7 @@ function MensagemDeErro()
 function Sucesso()
 {
   if (isset($_SESSION["Sucesso"])) {
-    $msg = "<div>";
+    $msg = "<div class=\"alert alert-success\">";
     $msg .= htmlentities($_SESSION["Sucesso"]);
     $msg .= "</div>";
     $_SESSION["Sucesso"] = null;

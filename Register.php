@@ -5,26 +5,39 @@
 <?php
 if (isset($_POST["Submit"])) {
   $Name = $_POST["Name"];
+  $Email = $_POST["Email"];
   $Password = $_POST["Password"];
+  $ConfirmPassword = $_POST["ConfirmPassword"];
 
-  if (empty($Name || $Password)) {
+  if (empty($Name & $Email & $Password)) {
     $_SESSION["MenssagemDeErro"] = "Preencha todos os campos corretamente.";
-    Redirect("Login.php");
+    Redirect("Register.php");
+  }
+
+  if (strlen($Password) < 5) {
+    $_SESSION["MenssagemDeErro"] = "Sua senha deve conter no mínimo 4 caracteres.";
+    Redirect("Register.php");
+  }
+
+  if ($Password !== $ConfirmPassword) {
+    $_SESSION["MenssagemDeErro"] = "Senhas diferentes.";
+    Redirect("Register.php");
   } else {
     $ConectarDB;
-    $sql = "SELECT * FROM users WHERE name=:name AND password=sha2(:password, 224)";
+    $sql = "INSERT INTO users(name, email, password)";
+    $sql .= "VALUES(:name, :email, sha2(:password, 224))";
     $stmt = $ConectarDB->prepare($sql);
     $stmt->bindValue(":name", $Name);
+    $stmt->bindValue(":email", $Email);
     $stmt->bindValue(":password", $Password);
 
-    $stmt->execute();
+    $Executar = $stmt->execute();
 
-    $Result = $stmt->rowCount();
-
-    if ($Result) {
-      echo "ok";
+    if ($Executar) {
+      Redirect("Posts.php");
     } else {
-      echo "n";
+      $_SESSION["MenssagemDeErro"] = "Erro";
+      Redirect("Register.php");
     }
   }
 };
@@ -59,17 +72,23 @@ if (isset($_POST["Submit"])) {
     echo Sucesso();
     ?>
     <div class="row">
-      <div class="col-4">
-        <form action="Login.php" method="post">
+      <div class="col-md-4">
+        <form action="Register.php" method="post">
           <div class="form-group input-group-sm">
             <label for="Name">Username</label>
             <input type="Name" name="Name" class="form-control" id="Name">
           </div>
           <div class="form-group input-group-sm">
-            <label for="Password">Password</label>
-            <input type="Password" name="Password" class="form-control" id="Password">
-            <small id="passwordHelp" class="form-text text-muted"><a class="text-dark" href="#">Esqueceu sua senha?</a></small>
+            <label for="Email">E-mail</label>
+            <input type="Email" name="Email" class="form-control" id="Email">
           </div>
+          <div class="form-group input-group-sm">
+            <label for="Password">Senha</label>
+            <input type="Password" name="Password" class="form-control" id="Password">
+          </div>
+          <div class="form-group input-group-sm">
+            <label for="ConfirmPassword">Confirme sua senha</label>
+            <input type="Password" name="ConfirmPassword" class="form-control" id="ConfirmPassword"> </div>
           <button name="Submit" type="Submit" class="mt-2 btn btn-sm btn-primary">Enviar</button>
         </form>
       </div>

@@ -55,7 +55,7 @@
             </tr>
           </thead>
           <?php
-          global $ConectarDB;
+          $ConectarDB;
           $Inc = 0;
           if (isset($_GET["search"])) {
             $Search = $_GET["search"];

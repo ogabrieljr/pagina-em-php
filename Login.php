@@ -11,20 +11,15 @@ if (isset($_POST["Submit"])) {
     $_SESSION["MenssagemDeErro"] = "Preencha todos os campos corretamente.";
     Redirect("Login.php");
   } else {
-    $ConectarDB;
-    $sql = "SELECT * FROM users WHERE name=:name AND password=sha2(:password, 224)";
-    $stmt = $ConectarDB->prepare($sql);
-    $stmt->bindValue(":name", $Name);
-    $stmt->bindValue(":password", $Password);
+    $ContaEncontrada = TentativaDeLogin($Name, $Password);
 
-    $stmt->execute();
-
-    $Result = $stmt->rowCount();
-
-    if ($Result) {
-      echo "ok";
+    if ($ContaEncontrada) {
+      $_SESSION["Username"] = $ContaEncontrada["name"];
+      $_SESSION["Sucesso"] = "Bem-vindo " .  $_SESSION["Username"];
+      Redirect("Login.php");
     } else {
-      echo "n";
+      $_SESSION["MenssagemDeErro"] = "Senha incorreta.";
+      Redirect("Login.php");
     }
   }
 };

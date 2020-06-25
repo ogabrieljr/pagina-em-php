@@ -89,19 +89,18 @@
           ?>
             <tbody>
               <tr>
-                <td><?php echo $Inc; ?></td>
-                <td><?php echo $Title; ?></td>
-                <td><?php
+                <td><a class="text-dark" href="PostCompleto.php?id=<?php echo $PostID ?>"><?php echo $Inc; ?></a></td>
+                <td><a class="text-dark" href="PostCompleto.php?id=<?php echo $PostID ?>"><?php echo $Title; ?></td>
+                <td><a class="text-dark" href="PostCompleto.php?id=<?php echo $PostID ?>"><?php
                     if (strlen($Description) > 40) $Description = substr($Description, 0, 30) . "...";
                     echo $Description;
-                    ?></td>
+                    ?></a></td>
                 <td><img src="Uploads/<?php echo $Image; ?>" width="100px" alt=""></td>
                 <td><?php echo $Date; ?></td>
                 <td><?php echo $Author; ?></td>
                 <td>
                   <!-- <button type="button" class="btn btn-link btn-sm">Edit</button>
                   <button type="button" class="btn btn-danger btn-sm">Delete</button> -->
-                  <a href="PostCompleto.php?id=<?php echo $PostID ?>" type="button" class="btn btn-success btn-sm text-white">Artigo completo</a>
                 </td>
               </tr>
             </tbody>

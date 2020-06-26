@@ -23,7 +23,7 @@ Login();
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <a class="navbar-brand" href="Home.php">JR</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -42,7 +42,7 @@ Login();
     echo Sucesso();
     ?>
     <div class="row">
-      <div class="col-4">
+      <div class="col-md-4">
         <form action="Login.php" method="post">
           <div class="form-group input-group-sm">
             <label for="Name">Username</label>

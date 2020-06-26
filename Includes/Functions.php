@@ -49,7 +49,7 @@ function Login()
       if ($ContaEncontrada) {
         $_SESSION["Username"] = $ContaEncontrada["name"];
         // $_SESSION["Sucesso"] = "Bem-vindo " .  $_SESSION["Username"];
-        Redirect("Posts.php");
+        Redirect("Home.php");
       } else {
         $_SESSION["MensagemDeErro"] = "Senha incorreta.";
         Redirect("Login.php");

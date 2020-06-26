@@ -34,8 +34,8 @@
   <div class="container my-3">
     <div class="row">
       <div class="col-md-3">
-        <a href="AddNewPosts.php" class="btn btn-primary btn-block">
-          Add New Post
+        <a href="NovoPost.php" class="btn btn-primary btn-block">
+          Novo post
         </a>
       </div>
     </div>

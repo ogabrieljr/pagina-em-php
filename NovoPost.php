@@ -17,22 +17,22 @@ if (isset($_POST["Submit"])) {
 
   if (empty($Title & $Post)) {
     $_SESSION["MensagemDeErro"] = "Preencha todos os campos corretamente.";
-    Redirect("AddNewPosts.php");
+    Redirect("NovoPost.php");
   };
 
   if (strlen($Title & $Post) < 10) {
     $_SESSION["MensagemDeErro"] = "Campo muito curto, mínimo de 10 caracteres.";
-    Redirect("AddNewPosts.php");
+    Redirect("NovoPost.php");
   }
 
   if (strlen($Title) >= 50) {
     $_SESSION["MensagemDeErro"] = "Campo muito longo, máximo de 50 caracteres.";
-    Redirect("AddNewPosts.php");
+    Redirect("NovoPost.php");
   }
 
   if (strlen($Post) >= 1000) {
     $_SESSION["MensagemDeErro"] = "Campo muito longo, máximo de 1000 caracteres.";
-    Redirect("AddNewPosts.php");
+    Redirect("NovoPost.php");
   } else {
     $sql = "INSERT INTO posts(title, description, author, img_url, created_at)";
     $sql .= "VALUES(:titulo, :descricao, :autor, :imagem, :data)";
@@ -48,7 +48,7 @@ if (isset($_POST["Submit"])) {
 
     if ($Executar) {
       $_SESSION["Sucesso"] = "Sucesso";
-      Redirect("AddNewPosts.php");
+      Redirect("NovoPost.php");
     } else {
       $_SESSION["MensagemDeErro"] = "Erro";
     }
@@ -91,7 +91,7 @@ if (isset($_POST["Submit"])) {
     echo Sucesso();
     ?>
     <div class="form-group row">
-      <form action="AddNewPosts.php" method="post" enctype="multipart/form-data">
+      <form action="NovoPost.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="Title">Título: </label><br>
           <input class="form control" id="Title" name="Title" type="text">

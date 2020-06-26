@@ -11,17 +11,17 @@ if (isset($_POST["Submit"])) {
 
   if (empty($Name & $Email & $Password)) {
     $_SESSION["MensagemDeErro"] = "Preencha todos os campos corretamente.";
-    Redirect("Register.php");
+    Redirect("Cadastro.php");
   }
 
   if (strlen($Password) < 5) {
     $_SESSION["MensagemDeErro"] = "Sua senha deve conter no mínimo 4 caracteres.";
-    Redirect("Register.php");
+    Redirect("Cadastro.php");
   }
 
   if ($Password !== $ConfirmPassword) {
     $_SESSION["MensagemDeErro"] = "Senhas diferentes.";
-    Redirect("Register.php");
+    Redirect("Cadastro.php");
   } else {
     $ConectarDB;
     $sql = "INSERT INTO users(name, email, password)";
@@ -39,7 +39,7 @@ if (isset($_POST["Submit"])) {
       Redirect("Home.php");
     } else {
       $_SESSION["MensagemDeErro"] = "Erro";
-      Redirect("Register.php");
+      Redirect("Cadastro.php");
     }
   }
 };
@@ -75,7 +75,7 @@ if (isset($_POST["Submit"])) {
     ?>
     <div class="row">
       <div class="col-md-4">
-        <form action="Register.php" method="post">
+        <form action="Cadastro.php" method="post">
           <div class="form-group input-group-sm">
             <label for="Name">Username</label>
             <input type="Name" name="Name" class="form-control" id="Name">

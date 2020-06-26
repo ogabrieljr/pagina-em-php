@@ -30,7 +30,7 @@
       </form>
     <?php else : ?>
       <form class="form-inline my-2 my-lg-0 input-group-sm ">
-        <a href="Register.php" class="btn btn-primary mx-3 btn-sm" type="submit">Cadastre-se</a>
+        <a href="Cadastro.php" class="btn btn-primary mx-3 btn-sm" type="submit">Cadastre-se</a>
         <a href="Login.php" class="mr-3">Entrar</a>
       </form>
     <?php endif; ?>

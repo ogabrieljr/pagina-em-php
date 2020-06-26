@@ -18,22 +18,16 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="Posts.php">JR</a>
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="Posts.php">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Posts.php?author=<?php echo $_SESSION['Username'] ?>">Perfil</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="nav-item active">
+        <a class="nav-link">Perfil</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 input-group-sm ">
       <a href="Logout.php" class="btn btn-danger mx-3 btn-sm" type="submit">Log out</a>
-      <a href="#" class="mr-3"><?php echo $_SESSION["Username"] ?></a>
+      <div class="mr-3 text-primary"><?php echo $_SESSION["Username"] ?></div>
     </form>
     <form class="form-inline my-2 my-lg-0 input-group-sm ">
       <input class="form-control mr-sm-2" type="search" name="search" placeholder="Digite aqui" aria-label="Pesquisar">

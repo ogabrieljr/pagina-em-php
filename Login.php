@@ -27,16 +27,7 @@ Login();
     <a class="navbar-brand" href="Posts.php">JR</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="Posts.php">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="Posts.php?author=<?php echo $_SESSION["Username"] ?>">Home<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 input-group-sm ">

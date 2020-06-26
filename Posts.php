@@ -22,22 +22,15 @@
       <li class="nav-item">
         <a class="nav-link" href="Perfil.php?author=<?php echo $_SESSION['Username'] ?>">Perfil</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
     </ul>
     <?php if (isset($_SESSION["Username"])) : ?>
       <form class="form-inline my-2 my-lg-0 input-group-sm ">
         <a href="Logout.php" class="btn btn-danger mx-3 btn-sm" type="submit">Log out</a>
-        <a href="#" class="mr-3"><?php echo $_SESSION["Username"] ?></a>
+        <a href="Perfil.php?author=<?php echo $_SESSION['Username'] ?>" class="mr-3"><?php echo $_SESSION["Username"] ?></a>
       </form>
     <?php else : ?>
       <form class="form-inline my-2 my-lg-0 input-group-sm ">
         <a href="Register.php" class="btn btn-primary mx-3 btn-sm" type="submit">Cadastre-se</a>
-
         <a href="Login.php" class="mr-3">Entrar</a>
       </form>
     <?php endif; ?>

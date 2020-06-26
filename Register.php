@@ -62,10 +62,10 @@ if (isset($_POST["Submit"])) {
       <li class="nav-item active">
         <a class="nav-link" href="Posts.php">Home<span class="sr-only">(current)</span></a>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li> -->
     </ul>
+    <form class="form-inline my-2 my-lg-0 input-group-sm ">
+      <a href="Login.php" class="btn btn-primary mx-3 btn-sm text-white" type="submit">Login</a>
+    </form>
   </nav>
 
   <section class="container py-4">

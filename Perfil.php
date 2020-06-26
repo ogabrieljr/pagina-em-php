@@ -44,6 +44,10 @@
   <section class="container py-2 mb-4">
     <div class="row">
       <div class="col-lg-12">
+        <?php
+        echo MensagemDeErro();
+        echo Sucesso();
+        ?>
         <table class="table table-striped table-hover">
           <thead class="thead-dark">
             <tr>
@@ -64,7 +68,7 @@
           $stmt = $ConectarDB->query($sql);
           $stmt->execute();
           while ($Dados = $stmt->fetch()) {
-            $PostID = $Dados["ID"];
+            $PostId = $Dados["ID"];
             $Title = $Dados["title"];
             $Description = $Dados["description"];
             $Image = $Dados["img_url"];
@@ -73,9 +77,9 @@
           ?>
             <tbody>
               <tr>
-                <td><a class="text-dark" href="PostCompleto.php?id=<?php echo $PostID ?>"><?php echo $Inc; ?></a></td>
-                <td><a class="text-dark" href="PostCompleto.php?id=<?php echo $PostID ?>"><?php echo $Title; ?></td>
-                <td><a class="text-dark" href="PostCompleto.php?id=<?php echo $PostID ?>">
+                <td><a class="text-dark" href="PostCompleto.php?id=<?php echo $PostId ?>"><?php echo $Inc; ?></a></td>
+                <td><a class="text-dark" href="PostCompleto.php?id=<?php echo $PostId ?>"><?php echo $Title; ?></td>
+                <td><a class="text-dark" href="PostCompleto.php?id=<?php echo $PostId ?>">
                     <?php
                     if (strlen($Description) > 40) $Description = substr($Description, 0, 30) . "...";
                     echo $Description;
@@ -84,8 +88,8 @@
                 <td><?php echo $Date; ?></td>
                 <td><?php echo $Author; ?></td>
                 <td>
-                  <!-- <button type="button" class="btn btn-link btn-sm">Edit</button>
-                  <button type="button" class="btn btn-danger btn-sm">Delete</button> -->
+                  <a href="Editar.php?id=<?php echo $PostId; ?>" type="button" class="btn btn-link btn-sm">Edit</a>
+                  <a href="Deletar.php?id=<?php echo $PostId; ?>" type="button" class="btn btn-danger btn-sm">Delete</a>
                 </td>
               </tr>
             </tbody>

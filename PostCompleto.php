@@ -15,10 +15,10 @@
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="Posts.php">JR</a>
+    <a class="navbar-brand" href="Home.php">JR</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="Posts.php">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Home.php">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
@@ -40,7 +40,7 @@
   $ConectarDB;
   $Inc = 0;
   if (isset($_GET["search"])) {
-    Redirect("Posts.php");
+    Redirect("Home.php");
     $Search = $_GET["search"];
     $sql = "SELECT * FROM posts WHERE title LIKE :search";
     $stmt = $ConectarDB->prepare(($sql));
@@ -49,7 +49,7 @@
   } else {
     $PostId = $_GET["id"];
     if (!isset($PostId)) {
-      Redirect("Posts.php");
+      Redirect("Home.php");
     }
     $sql = "SELECT * FROM posts WHERE ID=$PostId";
     $stmt = $ConectarDB->query($sql);
@@ -77,7 +77,7 @@
           <div class="card-body">
             <h3 class="card-title"><?php echo htmlentities($Title) ?></h3>
             <?php if (!isset($Title)) {
-              Redirect("Posts.php");
+              Redirect("Home.php");
             }
             ?>
             <small class="text-muted"><?php echo htmlentities($Author) ?></small>

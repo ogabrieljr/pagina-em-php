@@ -4,7 +4,7 @@
 
 <?php
 if (isset($_SESSION["Username"])) {
-  Redirect("Posts.php");
+  Redirect("Home.php");
 }
 
 
@@ -24,10 +24,10 @@ Login();
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="Posts.php">JR</a>
+    <a class="navbar-brand" href="Home.php">JR</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="Posts.php?author=<?php echo $_SESSION["Username"] ?>">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Home.php?author=<?php echo $_SESSION["Username"] ?>">Home<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 input-group-sm ">

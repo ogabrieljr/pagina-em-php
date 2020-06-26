@@ -52,7 +52,7 @@ Login();
             <label for="Password">Password</label>
             <input type="Password" name="Password" class="form-control" id="Password">
             <small class="my-2 form-text text-muted">Ainda não tem uma conta? <a class="text-dark" href="Cadastro.php"> Registre-se</a></small>
-            <small id="passwordHelp" class="form-text text-muted"><a class="text-dark" href="#">Esqueceu sua senha?</a></small>
+            <small id="passwordHelp" class="form-text text-muted"><a class="text-dark" href="RecuperacaoSenha.php">Esqueceu sua senha?</a></small>
           </div>
           <button name="Submit" type="Submit" class="btn btn-sm btn-primary">Enviar</button>
         </form>

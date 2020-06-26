@@ -94,6 +94,7 @@ if (isset($_POST["Submit"])) {
           <button name="Submit" type="Submit" class="m-1 btn btn-sm btn-primary">Enviar</button>
         </form>
         <small class="text-muted">Já tem uma conta? <a class="text-dark" href="Login.php">Faça login</a></small>
+        <small id="passwordHelp" class="form-text text-muted"><a class="text-dark" href="RecuperacaoSenha.php">Esqueceu sua senha?</a></small>
       </div>
     </div>
   </section>

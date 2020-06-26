@@ -71,21 +71,16 @@ if (isset($_POST["Submit"])) {
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="Home.php">JR</a>
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="Home.php">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="Home.php?author=<?php echo $_SESSION["Username"] ?>">Perfil<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 input-group-sm ">
       <a href="Logout.php" class="btn btn-danger mx-3 btn-sm" type="submit">Log out</a>
+      <a href="Perfil.php?author=<?php echo $_SESSION['Username'] ?>" class="mr-3"><?php echo $_SESSION["Username"] ?></a>
     </form>
     </ul>
   </nav>

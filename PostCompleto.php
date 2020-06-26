@@ -20,19 +20,10 @@
       <li class="nav-item active">
         <a class="nav-link" href="Home.php">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 input-group-sm ">
       <a href="Logout.php" class="btn btn-danger mx-3 btn-sm" type="submit">Log out</a>
-      <a href="#" class="mr-3"><?php echo $_SESSION["Username"] ?></a>
+      <a href="Perfil.php?author=<?php echo $_SESSION['Username'] ?>" class="mr-3"><?php echo $_SESSION["Username"] ?></a>
     </form>
   </nav>
 
